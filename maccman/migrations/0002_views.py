@@ -16,7 +16,7 @@ def load_views():
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mailman', '0001_initial'),
+        ('maccman', '0001_initial'),
     ]
 
     operations = [

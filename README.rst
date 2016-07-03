@@ -1,8 +1,8 @@
 =======
-MailMan
+MAccMan
 =======
 
-MailMan is a reusable django application to facilitate easy management of email accounts, mailboxes, and aliases. **MailMan is currently under heavy development and not suited for production use.**
+MAccMan is a reusable django application to facilitate easy management of email accounts, mailboxes, and aliases. **MAccMan is currently under heavy development and not suited for production use.**
 
 Support notes
 -------------
@@ -24,7 +24,7 @@ Quick start
 
    INSTALLED_APPS = [
        ...,
-       'mailman',
+       'maccman',
    ]
 
 3. Run `./manage.py migrate` to create the required models and views
@@ -43,7 +43,7 @@ Quick start
 Dovecot
 ~~~~~~~
 
-MailMan employs the cryptographic functionalities built into PostgreSQL to secure the users passwords. Therefore, you need to let the databse verify the passwords. To this, you will need the following `WHERE` clause in your dovecot SQL statement::
+MAccMan employs the cryptographic functionalities built into PostgreSQL to secure the users passwords. Therefore, you need to let the databse verify the passwords. To this, you will need the following `WHERE` clause in your dovecot SQL statement::
 
   WHERE user = '%u' AND password = crypt('%w', password);
 
@@ -56,5 +56,5 @@ For more information, please refer to the excellent dovecot documentation
 License
 -------
 
-MailMan is published under the terms and coditions of the 3-Clause-BSD-License
+MAccMan is published under the terms and coditions of the 3-Clause-BSD-License
 

@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('account', models.CharField(max_length=249)),
                 ('enabled', models.BooleanField(default=True)),
                 ('password', cryptofield.fields.CryptoField(max_length=256)),
-                ('domain', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mailman.Domain')),
+                ('domain', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maccman.Domain')),
             ],
             options={
                 'verbose_name_plural': 'mailboxes',
@@ -62,34 +62,34 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('allowed_domains', models.ManyToManyField(blank=True, db_table='mailman_users_domains', to='mailman.Domain')),
+                ('allowed_domains', models.ManyToManyField(blank=True, db_table='maccman_users_domains', to='maccman.Domain')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
             model_name='mailbox',
             name='profile',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mailman.UserProfile'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maccman.UserProfile'),
         ),
         migrations.AddField(
             model_name='domain',
             name='owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mailman.UserProfile'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maccman.UserProfile'),
         ),
         migrations.AddField(
             model_name='alias',
             name='domain',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mailman.Domain'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maccman.Domain'),
         ),
         migrations.AddField(
             model_name='alias',
             name='profile',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mailman.UserProfile'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='maccman.UserProfile'),
         ),
         migrations.AddField(
             model_name='alias',
             name='targets',
-            field=models.ManyToManyField(db_table='mailman_aliases_targets', to='mailman.Target'),
+            field=models.ManyToManyField(db_table='maccman_aliases_targets', to='maccman.Target'),
         ),
         migrations.AlterUniqueTogether(
             name='mailbox',
