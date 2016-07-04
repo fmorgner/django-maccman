@@ -22,10 +22,10 @@ Quick start
 
 2. Add the mailman application to your projects `INSTALLED_APPS` setting like so::
 
-   INSTALLED_APPS = [
-       ...,
-       'maccman',
-   ]
+    INSTALLED_APPS = [
+        ...,
+        'maccman',
+    ]
 
 3. Run `./manage.py migrate` to create the required models and views
 
@@ -33,12 +33,12 @@ Quick start
 
 5. Configure your postfix and dovecot instances to use the following views:
 
-   - postfix_alias (Contains alias to destination mappings)
-   - postfix_domain (Contains all active domains)
-   - postfix_mailbox (Contains all active mailboxes
-   - dovecot_iterate (Contains all active users)
-   - dovecot_password (Contains username to password mappings for all active users)
-   - dovecot_user (Contains address to maildir mappings for all active users)
+ - postfix_alias (Contains alias to destination mappings)
+ - postfix_domain (Contains all active domains)
+ - postfix_mailbox (Contains all active mailboxes
+ - dovecot_iterate (Contains all active users)
+ - dovecot_password (Contains username to password mappings for all active users)
+ - dovecot_user (Contains address to maildir mappings for all active users)
 
 Dovecot
 ~~~~~~~
