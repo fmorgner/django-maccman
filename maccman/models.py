@@ -29,7 +29,7 @@ class Target(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     allowed_domains = models.ManyToManyField(Domain,
-                                             db_table="mailman_users_domains",
+                                             db_table="maccman_users_domains",
                                              blank=True)
 
     def __str__(self):
@@ -64,7 +64,7 @@ class Mailbox(Identity):
 
 class Alias(Identity):
     targets = models.ManyToManyField(Target,
-                                     db_table="mailman_aliases_targets")
+                                     db_table="maccman_aliases_targets")
 
     class Meta(Identity.Meta):
         verbose_name_plural = "aliases"
