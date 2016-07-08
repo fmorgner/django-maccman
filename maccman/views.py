@@ -1,8 +1,14 @@
 from django.contrib.auth import logout, login
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.core.urlresolvers import reverse_lazy
+
+from django.shortcuts import get_object_or_404
 
 from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.edit import FormView
+from django.views.generic import ListView
+
 from .models import Domain, Mailbox, UserProfile
 from .forms import UserProfileAuthenticationForm
 
@@ -45,4 +51,24 @@ class LogoutView(RedirectView):
         return super(LogoutView, self).get_redirect_url(*args, **kwargs)
 
 
+class UserDomainsListView(LoginRequiredMixin, ListView):
+
+    template_name = 'maccman/user_domain_list.html'
+    model = Domain
+    context_object_name = 'allowed_domains'
+    login_url = reverse_lazy('maccman:login')
+
+    def get_queryset(self):
+        profile = get_object_or_404(UserProfile, user=self.request.user)
+        if profile:
+            return profile.domain_set.all().order_by('name')
+        return []
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDomainsListView, self).get_context_data(**kwargs)
+        profile = get_object_or_404(UserProfile, user=self.request.user)
+        if profile:
+            owned = profile.allowed_domains.all().order_by('name')
+            context['owned_domains'] = owned
+        return context
 
