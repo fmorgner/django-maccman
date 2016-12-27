@@ -69,3 +69,14 @@ class UserDomainsListView(LoginRequiredMixin, ListView):
             context['owned_domains'] = owned
         return context
 
+
+class UserMailboxesListView(LoginRequiredMixin, ListView):
+
+    template_name = 'maccman/user_mailbox_list.html'
+    model = Mailbox
+    context_object_name = 'mailboxes'
+    login_url = reverse_lazy('maccman:login')
+
+    def get_queryset(self):
+        profile = get_object_or_404(UserProfile, user=self.request.user)
+        return profile.mailbox_set.all().order_by('domain__name', 'account')

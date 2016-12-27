@@ -30,8 +30,12 @@
         {% endif %}
 
         {% if user.is_authenticated and user.userprofile %}
-        <li>
-          <a href="{% url 'maccman:domains' %}">Domains</a>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'maccman:domains' %}">Domains</a></li>
+            <li><a href="{% url 'maccman:mailboxes' %}">Mailboxes</a></li>
+          </ul>
         </li>
         {% endif %}
       </ul>
@@ -43,7 +47,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-sd-12">
+    <div class="col-md-12">
       {% block content %}{% endblock %}
     </div>
   </div>

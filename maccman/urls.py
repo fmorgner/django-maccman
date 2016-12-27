@@ -21,4 +21,8 @@ urlpatterns = [
     url(r'^domains$',
         views.UserDomainsListView.as_view(),
         name='domains',),
+
+    url(r'^mailboxes$',
+        views.UserMailboxesListView.as_view(),
+        name='mailboxes',),
 ]
